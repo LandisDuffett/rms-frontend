@@ -2,7 +2,7 @@
   "name": "my-hello-angular",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build",
+    "heroku-postbuild": "ng build --configuration=production",
     "start": "node server.js",
     "start-dev": "ng serve",
     "test": "ng test"
