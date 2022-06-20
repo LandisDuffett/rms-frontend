@@ -1,6 +1,6 @@
 export interface Request{
     requestId: number,
-    userId: number,
+    requestUserId: number,
     requestAmount: number,
     requestDescription: string,
     requestStatus: string,

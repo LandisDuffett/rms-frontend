@@ -28,7 +28,7 @@ export class ViewRequestsComponent implements OnInit {
   
   newRequest: Request = {
     requestId: 0,
-    userId: 0,
+    requestUserId: 0,
     requestAmount: 0,
     requestDescription: '',
     requestStatus: '',
@@ -39,7 +39,7 @@ export class ViewRequestsComponent implements OnInit {
 
   updateRequest: Request = {
     requestId: 0,
-    userId: 0,
+    requestUserId: 0,
     requestAmount: 0,
     requestDescription: '',
     requestStatus: '',
@@ -102,7 +102,7 @@ export class ViewRequestsComponent implements OnInit {
   editRequest(request: Request, reqStatus: string){
     //send edit request to service and then re-fetch all requests with loadData()
     this.updateRequest.requestId = request.requestId;
-    this.updateRequest.userId = request.userId;
+    this.updateRequest.requestUserId = request.requestUserId;
     this.updateRequest.requestAmount = request.requestAmount;
     this.updateRequest.requestDescription = request.requestDescription;
     this.updateRequest.requestStatus = reqStatus;
@@ -145,7 +145,7 @@ export class ViewRequestsComponent implements OnInit {
       // clear the Add Form
       this.newRequest = {
         requestId: 0,
-        userId: 0,
+        requestUserId: 0,
         requestAmount: 0,
         requestDescription: '',
         requestStatus: '',

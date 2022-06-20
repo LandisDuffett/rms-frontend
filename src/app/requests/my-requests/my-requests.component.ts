@@ -25,7 +25,7 @@ export class MyRequestsComponent implements OnInit {
 
   newRequest: Request = {
     requestId: 0,
-    userId: this.currentUser.userId,
+    requestUserId: this.currentUser.userId,
     requestAmount: 0,
     requestDescription: '',
     requestStatus: 'pending',
@@ -118,7 +118,7 @@ export class MyRequestsComponent implements OnInit {
       // clear the Add Form
       this.newRequest = {
         requestId: 0,
-        userId: this.currentUser.userId,
+        requestUserId: this.currentUser.userId,
         requestAmount: 0,
         requestDescription: '',
         requestStatus: 'pending',

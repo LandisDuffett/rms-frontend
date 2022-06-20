@@ -47,7 +47,7 @@
                 <tbody>
                     <tr *ngFor="let request of currentAllRequests">
                         <td>{{ request.requestId }}</td> 
-                        <td>{{ request.userId }}</td> 
+                        <td>{{ request.requestUserId }}</td> 
                         <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                         <td>{{ request.requestAmount }}</td> 
                         <td>{{ request.requestDescription }}</td> 
@@ -93,7 +93,7 @@
                     <tr *ngFor="let request of currentAllRequests">
                     <ng-container *ngIf="request.requestStatus == 'pending'">
                        <td>{{ request.requestId }}</td> 
-                       <td>{{ request.userId }}</td> 
+                       <td>{{ request.requestUserId }}</td> 
                        <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        <td>{{ request.requestAmount }}</td> 
                        <td>{{ request.requestDescription }}</td> 
@@ -137,7 +137,7 @@
                     <tr *ngFor="let request of currentAllRequests">
                     <ng-container *ngIf="request.requestStatus != 'pending'">
                        <td>{{ request.requestId }}</td> 
-                       <td>{{ request.userId }}</td> 
+                       <td>{{ request.requestUserId }}</td> 
                        <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        <td>{{ request.requestAmount }}</td> 
                        <td>{{ request.requestDescription }}</td> 

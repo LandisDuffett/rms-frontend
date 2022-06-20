@@ -42,7 +42,7 @@ export class ViewEmployeesComponent implements OnInit {
 
   updatedRequest: Request = {
     requestId: 0,
-    userId: 0,
+    requestUserId: 0,
     requestAmount: 0,
     requestDescription: '',
     requestStatus: '',
@@ -126,7 +126,7 @@ export class ViewEmployeesComponent implements OnInit {
 
   goToEditRequest(request: any, reqStatus: string) {
     //sends pending request to be updated with requestStatus of either 'approved' or 'denied'
-    this.updatedRequest.userId = request.userId;
+    this.updatedRequest.requestUserId = request.userId;
     this.updatedRequest.requestId = request.requestId;
     this.updatedRequest.requestAmount = request.requestAmount;
     this.updatedRequest.requestDescription = request.requestDescription;
