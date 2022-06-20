@@ -2,7 +2,7 @@
   "name": "my-hello-angular",
   "version": "0.0.0",
   "scripts": {
-    "build": "ng build",
+    "heroku-postbuild": "ng build",
     "start": "ng serve",
     "test": "ng test"
   },
@@ -16,6 +16,8 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@angular/cli": "~14.0.0",
+    "@angular/compiler-cli": "^14.0.0",
     "aws-sdk": "^2.1152.0",
     "bootswatch": "^5.1.3",
     "dotenv": "^16.0.1",
