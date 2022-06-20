@@ -136,7 +136,7 @@ export class ViewEmployeesComponent implements OnInit {
     this.updatedRequest.resolvedTime = new Date().toUTCString();
     this.employeeService.updateRequest(this.updatedRequest).subscribe((response)=>{
     //retrieves fresh array of requests, now fully updated
-      this.displayOneReqs(request.userId, this.currUsrFN, this.currUsrLN)
+      this.displayOneReqs(request.requestUserId, this.currUsrFN, this.currUsrLN)
     })
   }
 
