@@ -1,0 +1,156 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-2">
+        </div>
+        <div class="text-center col-8">
+            <h2 class="title">EMPLOYEE REQUESTS</h2>
+            <div *ngIf="requestMessage!=''">
+                <h3>{{ requestMessage }}</h3>            
+             </div>
+            <div *ngIf="!requestMessage" class="row justify-content-center">
+                <button
+                    type="button"
+                    class="btn btn2 btn-primary m-2 w-25"
+                    (click)="displayAllReq()">View All
+                </button>
+                <ng-container *ngIf="pendingButton">
+                <button
+                    type="button"
+                    class="btn btn2 btn-primary m-2 w-25"
+                    (click)="displayPendReq()">View Pending
+                </button>
+                </ng-container>
+                <ng-container *ngIf="resolvedButton">
+                <button
+                    type="button"
+                    class="btn btn2 btn-primary m-2 w-25"
+                    (click)="displayResReq()">View Resolved
+                </button>
+                </ng-container>
+            </div>
+            <div *ngIf="!requestMessage && displayAll">
+            <h2 class="title">All Requests</h2>
+            <table class="table">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMPLOYEE ID</td>
+                        <td>IMAGE</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                        <td>RESOLVED TIME</td>
+                        <td>ACTION</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentAllRequests">
+                        <td>{{ request.requestId }}</td> 
+                        <td>{{ request.userId }}</td> 
+                        <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                        <td>{{ request.requestAmount }}</td> 
+                        <td>{{ request.requestDescription }}</td> 
+                        <td>{{ request.requestStatus }}</td> 
+                        <td>{{ request.requestTime }}</td>
+                        <td><span *ngIf="request.resolvedTime !=''">{{ request.resolvedTime }}</span></td> 
+                        <td>
+                        <ng-container *ngIf="request.requestStatus=='pending'">
+                            <button
+                                type="button"
+                                class="btn adB btn-danger m-2 p-2"
+                                (click)="editRequest(request, 'approved')">
+                                    Approve
+                            </button>
+                            <button
+                                type="button"
+                                class="btn adB btn-danger m-2 p-2"
+                                (click)="editRequest(request, 'denied')">
+                                    Deny
+                            </button>
+                        </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!requestMessage && displayPend">
+            <h2 class="title">Pending Requests</h2>
+            <table class="table">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMPLOYEE ID</td>
+                        <td>IMAGE</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                        <td style="text-align:center">ACTION</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentAllRequests">
+                    <ng-container *ngIf="request.requestStatus == 'pending'">
+                       <td>{{ request.requestId }}</td> 
+                       <td>{{ request.userId }}</td> 
+                       <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                       <td>{{ request.requestAmount }}</td> 
+                       <td>{{ request.requestDescription }}</td> 
+                       <td>{{ request.requestStatus }}</td> 
+                       <td>{{ request.requestTime }}</td> 
+                       <td>
+                        <button
+                            type="button"
+                            class="btn adB btn-danger m-2 p-2"
+                            (click)="editRequest(request, 'approved')">
+                                Approve
+                        </button>
+                        <button
+                            type="button"
+                            class="btn adB btn-danger m-2 p-2"
+                            (click)="editRequest(request, 'denied')">
+                                Deny
+                        </button>
+                        </td>
+                    </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!requestMessage && displayRes">
+            <h2 class="title">Resolved Requests</h2>
+            <table class="table">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMPLOYEE ID</td>
+                        <td>IMAGE</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                        <td>RESOLVED TIME</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentAllRequests">
+                    <ng-container *ngIf="request.requestStatus != 'pending'">
+                       <td>{{ request.requestId }}</td> 
+                       <td>{{ request.userId }}</td> 
+                       <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                       <td>{{ request.requestAmount }}</td> 
+                       <td>{{ request.requestDescription }}</td> 
+                       <td>{{ request.requestStatus }}</td> 
+                       <td>{{ request.requestTime }}</td> 
+                       <td>{{ request.resolvedTime }}</td> 
+                    </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+
