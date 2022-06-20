@@ -111,7 +111,7 @@ export class MyRequestsComponent implements OnInit {
   addANewRequest(){
     console.log(this.newRequest)
     this.requestService.addRequest(this.newRequest).subscribe((response)=>{
- 
+      
        // we need a fresh fetch of all requests from the database
       this.loadData();
 
