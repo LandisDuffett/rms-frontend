@@ -114,7 +114,7 @@
                         <td>{{ request.requestId }}</td> 
                         <td>{{ request.requestUserId }}</td> 
                         <ng-container *ngIf="allowPendingImage || allowResolvedImage">
-                        <td class="imagecol"><img *ngIf="request.requestImageURL.length" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                        <td class="imagecol"><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                         </ng-container>
                         <td>{{ request.requestAmount }}</td> 
                         <td>{{ request.requestDescription }}</td> 
