@@ -59,26 +59,33 @@
                     <tr class="text-white">
                         <td>REQUEST ID</td>
                         <td>EMP ID</td>
-                        <td>IMAGE</td>
+                        <ng-container *ngIf="allowImage">
+                        <td class="imagecol">IMAGE</td>
+                        </ng-container>
                         <td>AMOUNT</td>
                         <td>DESCRIPTION</td>
                         <td>STATUS</td>
                         <td>REQUEST TIME</td>
                         <td>RESOLVED TIME</td>
+                        <ng-container *ngIf="displayAction">
                         <td>ACTION</td>
+                        </ng-container>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let request of currentEmpRequests">
                         <td>{{ request.requestId }}</td> 
                         <td>{{ request.requestUserId }}</td> 
-                        <td><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                        <ng-container *ngIf="allowImage">
+                        <td class="imagecol"><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td>
+                        </ng-container> 
                         <td>{{ request.requestAmount }}</td> 
                         <td>{{ request.requestDescription }}</td> 
                         <td>{{ request.requestStatus }}</td> 
                         <td>{{ request.requestTime }}</td> 
                         <td>{{ request.resolvedTime }}</td> 
-                        <td *ngIf="request.requestStatus=='pending'">
+                        <ng-container *ngIf="request.requestStatus=='pending'">
+                        <td>
                             <button
                                 type="button"
                                 class="btn btn-danger empreqB1"
@@ -92,6 +99,7 @@
                                     Deny
                             </button>
                        </td>
+                       </ng-container>
                     </tr>
                 </tbody>
             </table> 

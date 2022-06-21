@@ -25,6 +25,12 @@ export class ViewRequestsComponent implements OnInit {
   displayPend: boolean = false;
   
   displayRes: boolean = false;
+
+  displayAction: boolean = false;
+
+  allowPendingImage: boolean = false;
+
+  allowResolvedImage: boolean = false;
   
   newRequest: Request = {
     requestId: 0,
@@ -65,6 +71,9 @@ export class ViewRequestsComponent implements OnInit {
           console.log(response);
           this.requestMessage = '';
           this.currentAllRequests = response;
+          this.displayAction = false;
+          this.allowPendingImage = false;
+          this.allowResolvedImage = false;
           this.setButtons();
         },
         error: (error) => {
@@ -83,11 +92,14 @@ export class ViewRequestsComponent implements OnInit {
 
   setButtons() {
     for(let item of this.currentAllRequests) {
-      if(item.requestStatus == "pending") {
+      if(item.requestStatus == "pending" && item.requestImageURL !='') {
         this.pendingButton = true;
+        this.displayAction = true;
+        this.allowPendingImage = true;
       }
       else if(item.requestStatus != "pending") {
         this.resolvedButton = true;
+        this.allowResolvedImage = true;
       }
     }
   }

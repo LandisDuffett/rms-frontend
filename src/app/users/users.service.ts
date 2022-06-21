@@ -9,8 +9,8 @@ import { User } from './user.model';
 })
 export class UsersService {
 
-  baseUrl: string = environment.apiUrl+"/api/users";
-  //baseUrl: string = "http://localhost:7474/api/users";
+  //baseUrl: string = environment.apiUrl+"/api/users";
+  baseUrl: string = "http://localhost:7474/api/users";
   
   constructor(private http: HttpClient) { }
 

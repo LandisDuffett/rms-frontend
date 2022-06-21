@@ -21,11 +21,15 @@ export class ViewEmployeesComponent implements OnInit {
 
   oneEmpError = false;
 
+  allowImage = false;
+
   displayForm: boolean = false;
 
   displayAll: boolean = false;
 
   displayEmpReqs: boolean = false;
+
+  displayAction: boolean = false;
 
   currUsrFN: string = "";
 
@@ -77,6 +81,17 @@ export class ViewEmployeesComponent implements OnInit {
       });
   }
 
+  setAction() {
+    for(let item of this.currentEmpRequests) {
+      if(item.requestStatus == "pending") {
+        this.displayAction = true;
+      }
+      if(item.requestImageURL != '') {
+        this.allowImage = true;
+      }
+    }
+  }
+
   displayAllReqs(){
     //toggles displayAll on in order to display all employees
     //toggles displayEmpReqs off in order to hide chosen individual employee's requests
@@ -95,8 +110,11 @@ export class ViewEmployeesComponent implements OnInit {
           console.log(response)
           this.userRequestMessage = '';
           this.currentEmpRequests = response;
+          this.displayAction = false;
           this.displayAll = false;
           this.displayEmpReqs = true;
+          this.allowImage = false;
+          this.setAction();
         },
         error: (error) => {
           console.log(error.error.error);

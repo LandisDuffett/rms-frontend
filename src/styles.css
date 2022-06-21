@@ -3,7 +3,13 @@
     border: 2px solid white;
 }
 
-.btn, .table, .form-control, .card-body {
+.btn, .form-control, .card-body {
+    border: 2px solid black;
+}
+
+
+.table {
+    border-radius: 5%;
     border: 2px solid black;
 }
 
@@ -30,7 +36,7 @@ td {
 tbody, tfoot, th, thead, tr {
     border-color: black;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
 }
 
 td {
@@ -56,6 +62,19 @@ td {
 .centered {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 575px) {
+    .btn {
+        font-size: 0.65rem;
+    }
+    table {
+        font-size:.5rem;
+    }
+    .imagecol, .reqtimecol {
+        display: none;
+    }
+
 }
 
 

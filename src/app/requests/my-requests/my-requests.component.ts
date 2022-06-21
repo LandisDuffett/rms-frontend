@@ -15,6 +15,10 @@ export class MyRequestsComponent implements OnInit {
 
   shouldDisplay: boolean = false;
 
+  allowPendingImage: boolean = false;
+
+  allowResolvedImage: boolean = false;
+
   pendingButton: boolean = false;
 
   resolvedButton: boolean = false;
@@ -69,11 +73,13 @@ export class MyRequestsComponent implements OnInit {
 
   setButtons() {
     for(let item of this.currentMyRequests) {
-      if(item.requestStatus == "pending") {
+      if(item.requestStatus == "pending" && item.requestImageURL !='') {
         this.pendingButton = true;
+        this.allowPendingImage = true;
       }
-      else if(item.requestStatus != "pending") {
+      else if(item.requestStatus != "pending"  && item.requestImageURL !='') {
         this.resolvedButton = true;
+        this.allowResolvedImage = true;
       }
     }
   }
@@ -113,6 +119,8 @@ export class MyRequestsComponent implements OnInit {
     this.requestService.addRequest(this.newRequest).subscribe((response)=>{
       
        // we need a fresh fetch of all requests from the database
+      this.allowPendingImage = false;
+      this.allowResolvedImage = false;
       this.loadData();
 
       // clear the Add Form
