@@ -67,7 +67,7 @@
                         <td>STATUS</td>
                         <td>REQUEST TIME</td>
                         <td>RESOLVED TIME</td>
-                        <ng-container [(ngModel)]="displayAction">
+                        <ng-container *ngIf="displayAction">
                         <td>ACTION</td>
                         </ng-container>
                     </tr>
