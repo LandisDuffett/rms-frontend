@@ -92,10 +92,12 @@ export class ViewRequestsComponent implements OnInit {
 
   setButtons() {
     for(let item of this.currentAllRequests) {
-      if(item.requestStatus == "pending" && item.requestImageURL !=null) {
+      if(item.requestStatus == "pending") {
         this.pendingButton = true;
         this.displayAction = true;
+        if(item.requestImageURL !=null) {
         this.allowPendingImage = true;
+        }
       }
       else if(item.requestStatus != "pending") {
         this.resolvedButton = true;
