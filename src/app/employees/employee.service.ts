@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class EmployeeService {
 
-  baseUrl: string = "http://localhost:7474/api/users";
-  //baseUrl: string = environment.apiUrl+"/api/users";
+  //baseUrl: string = "http://localhost:7474/api/users";
+  baseUrl: string = environment.apiUrl+"/api/users";
   
   constructor(private http: HttpClient) { }
 

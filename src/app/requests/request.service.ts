@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class RequestService {
-  baseUrl: string = "http://localhost:7474/api/requests";
-  //baseUrl: string = environment.apiUrl+"/api/requests";
+  //baseUrl: string = "http://localhost:7474/api/requests";
+  baseUrl: string = environment.apiUrl+"/api/requests";
   
   constructor(private http: HttpClient) { }
 
