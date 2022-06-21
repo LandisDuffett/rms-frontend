@@ -59,7 +59,7 @@
                     <tr class="text-white">
                         <td>REQUEST ID</td>
                         <td>EMP ID</td>
-                        <ng-container *ngIf="allowImage">
+                        <ng-container [(ngModel)]="allowImage">
                         <td class="imagecol">IMAGE</td>
                         </ng-container>
                         <td>AMOUNT</td>
@@ -67,7 +67,7 @@
                         <td>STATUS</td>
                         <td>REQUEST TIME</td>
                         <td>RESOLVED TIME</td>
-                        <ng-container *ngIf="displayAction">
+                        <ng-container [(ngModel)]="displayAction">
                         <td>ACTION</td>
                         </ng-container>
                     </tr>
@@ -76,7 +76,7 @@
                     <tr *ngFor="let request of currentEmpRequests">
                         <td>{{ request.requestId }}</td> 
                         <td>{{ request.requestUserId }}</td> 
-                        <ng-container *ngIf="allowImage">
+                        <ng-container [(ngModel)]="allowImage">
                         <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td>
                         </ng-container> 
                         <td>{{ request.requestAmount }}</td> 

@@ -94,7 +94,7 @@
             <div *ngIf="myRequestMessage!=''">
                 <h3>{{ myRequestMessage }}</h3>            
              </div>
-            <table class="table" *ngIf="displayAll">
+            <table class="table" [(ngModel)]="displayAll">
                 <thead class="bg-secondary">
                     <tr class="text-white">
                         <td>REQUEST ID</td>
@@ -124,7 +124,7 @@
                     </tr>
                 </tbody>
                 </table>
-                <table class="table" *ngIf="displayPend">
+                <table class="table" [(ngModel)]="displayPend">
                     <thead class="bg-secondary">
                         <tr class="text-white">
                             <td>REQUEST ID</td>
@@ -143,7 +143,7 @@
                     <ng-container *ngIf="request.requestStatus == 'pending'">
                        <td>{{ request.requestId }}</td> 
                        <td>{{ request.requestUserId }}</td> 
-                       <ng-container *ngIf="allowPendingImage">
+                       <ng-container [(ngModel)]="allowPendingImage">
                        <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        </ng-container>
                        <td>{{ request.requestAmount }}</td> 
@@ -159,7 +159,7 @@
                     <tr class="text-white">
                         <td>REQUEST ID</td>
                         <td>EMPLOYEE ID</td>
-                        <ng-container *ngIf="allowResolvedImage">
+                        <ng-container [(ngModel)]="allowResolvedImage">
                         <td class="imagecol">IMAGE</td>
                         </ng-container>
                         <td>AMOUNT</td>
@@ -174,7 +174,7 @@
                     <ng-container *ngIf="request.requestStatus != 'pending'">
                        <td>{{ request.requestId }}</td> 
                        <td>{{ request.requestUserId }}</td> 
-                       <ng-container *ngIf="allowResolvedImage">
+                       <ng-container [(ngModel)]="allowResolvedImage">
                        <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        </ng-container>
                        <td>{{ request.requestAmount }}</td> 
