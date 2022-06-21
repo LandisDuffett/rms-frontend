@@ -13,13 +13,11 @@ import { LogoutComponent } from './users/logout/logout.component';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
-  //{ path: "view-requests", component: ViewRequestsComponent, canActivate:[AuthenticationGuard]},
-
-  { path: "view-requests", component: ViewRequestsComponent},
-  { path: "view-employees", component: ViewEmployeesComponent},
-  { path: "edit-request", component: ViewRequestsComponent},
-  { path: "my-requests", component: MyRequestsComponent},
-  { path: "my-info", component: MyInfoComponent}
+  { path: "view-requests", component: ViewRequestsComponent, canActivate:[AuthenticationGuard]},
+  { path: "view-employees", component: ViewEmployeesComponent, canActivate:[AuthenticationGuard]},
+  { path: "edit-request", component: ViewRequestsComponent, canActivate:[AuthenticationGuard]},
+  { path: "my-requests", component: MyRequestsComponent, canActivate:[AuthenticationGuard]},
+  { path: "my-info", component: MyInfoComponent, canActivate:[AuthenticationGuard]}
 ];
 
 @NgModule({
