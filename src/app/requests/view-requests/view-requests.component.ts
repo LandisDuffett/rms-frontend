@@ -71,6 +71,7 @@ export class ViewRequestsComponent implements OnInit {
           console.log(response);
           this.requestMessage = '';
           this.currentAllRequests = response;
+          this.displayAll = true;
           this.displayAction = false;
           this.allowPendingImage = false;
           this.allowResolvedImage = false;
