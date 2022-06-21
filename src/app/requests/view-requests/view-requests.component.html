@@ -51,13 +51,13 @@
                         <td>{{ request.requestId }}</td> 
                         <td>{{ request.requestUserId }}</td> 
                         <ng-container *ngIf="allowPendingImage || allowResolvedImage">
-                        <td class="imagecol"><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                        <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                         </ng-container>
                         <td>{{ request.requestAmount }}</td> 
                         <td>{{ request.requestDescription }}</td> 
                         <td>{{ request.requestStatus }}</td> 
                         <td class="reqtimecol">{{ request.requestTime }}</td>
-                        <td class="reqtimecol"><span *ngIf="request.resolvedTime !=''">{{ request.resolvedTime }}</span></td>              
+                        <td class="reqtimecol"><span *ngIf="request.resolvedTime !=null">{{ request.resolvedTime }}</span></td>              
                         <ng-container *ngIf="request.requestStatus=='pending'">
                             <td>
                             <button
@@ -101,7 +101,7 @@
                        <td>{{ request.requestId }}</td> 
                        <td>{{ request.requestUserId }}</td> 
                        <ng-container *ngIf="allowPendingImage">
-                       <td class="imagecol"><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                       <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        </ng-container>
                        <td>{{ request.requestAmount }}</td> 
                        <td>{{ request.requestDescription }}</td> 
@@ -149,7 +149,7 @@
                        <td>{{ request.requestId }}</td> 
                        <td>{{ request.requestUserId }}</td> 
                        <ng-container *ngIf="allowResolvedImage">
-                       <td class="imagecol"><img *ngIf="request.requestImageURL !=''" [src]="request.requestImageURL" height="80px" width="100px"></td> 
+                       <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        </ng-container>
                        <td>{{ request.requestAmount }}</td> 
                        <td>{{ request.requestDescription }}</td> 

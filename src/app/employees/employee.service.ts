@@ -42,7 +42,7 @@ export class EmployeeService {
 
   updateRequest(request: any) {
     //allows approving/denying a request for a specific employee
-    //return this.http.put<any>("http://localhost:7474/requests", request)
+    //return this.http.put<any>("http://localhost:7474/api/requests", request)
     return this.http.put<any>(environment.apiUrl+"/api/requests", request)
   }
 }
