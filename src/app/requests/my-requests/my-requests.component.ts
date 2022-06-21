@@ -73,11 +73,11 @@ export class MyRequestsComponent implements OnInit {
 
   setButtons() {
     for(let item of this.currentMyRequests) {
-      if(item.requestStatus == "pending" && item.requestImageURL !='') {
+      if(item.requestStatus == "pending" && item.requestImageURL !=null) {
         this.pendingButton = true;
         this.allowPendingImage = true;
       }
-      else if(item.requestStatus != "pending"  && item.requestImageURL !='') {
+      else if(item.requestStatus != "pending"  && item.requestImageURL !=null) {
         this.resolvedButton = true;
         this.allowResolvedImage = true;
       }
