@@ -41,7 +41,7 @@
                         <td>STATUS</td>
                         <td class="reqtimecol">REQUEST TIME</td>
                         <td class="reqtimecol">RESOLVED TIME</td>
-                        <ng-container [(ngModel)]="displayAction">
+                        <ng-container *ngIf="displayAction">
                         <td>ACTION</td>
                         </ng-container>
                     </tr>
