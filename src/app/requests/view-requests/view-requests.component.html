@@ -85,7 +85,7 @@
                     <tr class="text-white">
                         <td>REQUEST ID</td>
                         <td>EMPLOYEE ID</td>
-                        <ng-container [(ngModel)]="allowPendingImage">
+                        <ng-container *ngIf="allowPendingImage">
                         <td class="imagecol">IMAGE</td>
                         </ng-container>
                         <td>AMOUNT</td>
@@ -100,7 +100,7 @@
                     <ng-container *ngIf="request.requestStatus == 'pending'">
                        <td>{{ request.requestId }}</td> 
                        <td>{{ request.requestUserId }}</td> 
-                       <ng-container [(ngModel)]="allowPendingImage">
+                       <ng-container *ngIf="allowPendingImage">
                        <td class="imagecol"><img *ngIf="request.requestImageURL !=null" [src]="request.requestImageURL" height="80px" width="100px"></td> 
                        </ng-container>
                        <td>{{ request.requestAmount }}</td> 
@@ -133,7 +133,7 @@
                     <tr class="text-white">
                         <td>REQUEST ID</td>
                         <td>EMPLOYEE ID</td>
-                        <ng-container [(ngModel)]="allowResolvedImage">
+                        <ng-container *ngIf="allowResolvedImage">
                         <td class="imagecol">IMAGE</td>
                         </ng-container>
                         <td>AMOUNT</td>
