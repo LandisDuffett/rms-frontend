@@ -13,11 +13,11 @@ export class MyRequestsComponent implements OnInit {
 
   currentMyRequests: Request[];
 
+  currentPendRequests: Request[];
+
+  currentResRequests: Request[];
+
   shouldDisplay: boolean = false;
-
-  allowPendingImage: boolean = false;
-
-  allowResolvedImage: boolean = false;
 
   pendingButton: boolean = false;
 
@@ -45,7 +45,7 @@ export class MyRequestsComponent implements OnInit {
   displayRes: boolean = false;
 
   constructor(private requestService: RequestService, private router: Router, private authService: AuthService) { 
-    this.currentMyRequests = [];
+    this.currentMyRequests = []; this.currentPendRequests = []; this.currentResRequests = []
 }
 
   ngOnInit(): void {
@@ -62,6 +62,12 @@ export class MyRequestsComponent implements OnInit {
           console.log(response)
           this.myRequestMessage = '';
           this.currentMyRequests = response;
+          for(let item of response) {
+            if(item.requestStatus == "pending") 
+            this.currentPendRequests.push(item);
+            else if(item.requestStatus != "pending")
+            this.currentResRequests.push(item)
+          }
           this.setButtons();
         },
         error: (error) => {
@@ -75,15 +81,9 @@ export class MyRequestsComponent implements OnInit {
     for(let item of this.currentMyRequests) {
       if(item.requestStatus == "pending") {
         this.pendingButton = true;
-        if(item.requestImageURL !=null) {
-        this.allowPendingImage = true;
-        }
       }
       else if(item.requestStatus != "pending") {
         this.resolvedButton = true;
-        if(item.requestImageURL !=null) {
-        this.allowResolvedImage = true;
-        }
       }
     }
   }
@@ -123,8 +123,6 @@ export class MyRequestsComponent implements OnInit {
     this.requestService.addRequest(this.newRequest).subscribe((response)=>{
       
        // we need a fresh fetch of all requests from the database
-      this.allowPendingImage = false;
-      this.allowResolvedImage = false;
       this.loadData();
 
       // clear the Add Form

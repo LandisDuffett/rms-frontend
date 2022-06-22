@@ -13,6 +13,8 @@ export class ViewEmployeesComponent implements OnInit {
 
   currentAllEmployees: User[];
 
+  currentEmployees: User[];
+
   userMessage: string = "";
 
   userRequestMessage: string = "";
@@ -20,8 +22,6 @@ export class ViewEmployeesComponent implements OnInit {
   currentEmpRequests: Request[];
 
   oneEmpError = false;
-
-  allowImage = false;
 
   displayForm: boolean = false;
 
@@ -54,25 +54,26 @@ export class ViewEmployeesComponent implements OnInit {
     requestTime: '',
     resolvedTime: ''
   }
-  
-  constructor(private employeeService: EmployeeService, private router: Router) { 
+
+  constructor(private employeeService: EmployeeService, private router: Router) {
     this.currentAllEmployees = [];
     this.currentEmpRequests = [];
+    this.currentEmployees = []
   }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  loadData(){
+  loadData() {
     //need to retrieve a list of all employees for display and as basis for retrieiving individual employees' requests
     this.employeeService.getAllEmployees().subscribe(
       {
         next: (response) => {
-          console.log(response)
           this.userMessage = '';
           this.currentAllEmployees = response;
           this.displayAll = true;
+          this.reassign()
         },
         error: (error) => {
           console.log(error.error.error);
@@ -81,25 +82,29 @@ export class ViewEmployeesComponent implements OnInit {
       });
   }
 
+  reassign() {
+    for (let item of this.currentAllEmployees) {
+      if (item.userRole == "employee")
+        this.currentEmployees.push(item)
+    }
+  }
+
   setAction() {
-    for(let item of this.currentEmpRequests) {
-      if(item.requestStatus == "pending") {
+    for (let item of this.currentEmpRequests) {
+      if (item.requestStatus == "pending") {
         this.displayAction = true;
-      }
-      if(item.requestImageURL != '') {
-        this.allowImage = true;
       }
     }
   }
 
-  displayAllReqs(){
+  displayAllReqs() {
     //toggles displayAll on in order to display all employees
     //toggles displayEmpReqs off in order to hide chosen individual employee's requests
     this.displayAll = true;
     this.displayEmpReqs = false;
   }
 
-  displayOneReqs(userId: number, ufn: string, uln: string){
+  displayOneReqs(userId: number, ufn: string, uln: string) {
     //brings in chosen individual's first name and last name from template so current individual's name can be displayed in template
     this.currUsrFN = ufn;
     this.currUsrLN = uln;
@@ -113,7 +118,6 @@ export class ViewEmployeesComponent implements OnInit {
           this.displayAction = false;
           this.displayAll = false;
           this.displayEmpReqs = true;
-          this.allowImage = false;
           this.setAction();
         },
         error: (error) => {
@@ -123,11 +127,11 @@ export class ViewEmployeesComponent implements OnInit {
           this.userRequestMessage = error.error.error;
         }
       });
-    }
+  }
 
-  addANewEmp(){
-    this.employeeService.addEmployee(this.newEmployee).subscribe((response)=>{
-       // we need a fresh fetch of all employees from the database
+  addANewEmp() {
+    this.employeeService.addEmployee(this.newEmployee).subscribe((response) => {
+      // we need a fresh fetch of all employees from the database
       this.loadData();
 
       // toggle/hide the Add Request Form
@@ -152,8 +156,8 @@ export class ViewEmployeesComponent implements OnInit {
     this.updatedRequest.requestImageURL = request.requestImageURL;
     this.updatedRequest.requestTime = request.requestTime;
     this.updatedRequest.resolvedTime = new Date().toUTCString();
-    this.employeeService.updateRequest(this.updatedRequest).subscribe((response)=>{
-    //retrieves fresh array of requests, now fully updated
+    this.employeeService.updateRequest(this.updatedRequest).subscribe((response) => {
+      //retrieves fresh array of requests, now fully updated
       this.displayOneReqs(request.requestUserId, this.currUsrFN, this.currUsrLN)
     })
   }

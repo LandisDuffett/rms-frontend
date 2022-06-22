@@ -26,7 +26,7 @@ export class MyInfoComponent implements OnInit {
   updateEmployee: any = {
     userId: 0,
     userFirstName: '',
-    userLastName: '', 
+    userLastName: '',
     userEmail: '',
     userPassword: '',
     userRole: ''
@@ -35,32 +35,27 @@ export class MyInfoComponent implements OnInit {
   updatePwd: any = {
     userId: this.currentUserInfo.userId,
     userFirstName: this.currentUserInfo.userFirstName,
-    userLastName: this.currentUserInfo.userLastName, 
+    userLastName: this.currentUserInfo.userLastName,
     userEmail: this.currentUserInfo.userEmail,
     userPassword: '',
     userRole: this.currentUserInfo.userRole
   }
 
-  constructor(private employeeService: EmployeeService, private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute) { 
+  constructor(private employeeService: EmployeeService, private router: Router, private authService: AuthService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.updateEmployee =  this.authService.retreiveUserInfo();
+    this.updateEmployee = this.authService.retreiveUserInfo();
   }
 
-  loadData(){
+  loadData() {
   }
 
-  logTheChanges(title: any){
+  logTheChanges(title: any) {
     console.log(title);
   }
 
-  displayResetForm(){
-   /* if(this.shouldDisplay){
-      this.shouldDisplay = false;
-    }else{
-      this.shouldDisplay = true;
-    }*/
+  displayResetForm() {
     Swal.fire({
       title: 'You will be logged out after submitting new password and must then log in again with new password. Do you wish to proceed?',
       showDenyButton: false,
@@ -72,11 +67,12 @@ export class MyInfoComponent implements OnInit {
         cancelButton: 'order-1 right-gap',
         confirmButton: 'order-2',
         denyButton: 'order-3',
-      }}).then((result) => {
-        if (result.isConfirmed) {
-          this.shouldDisplay = true;
-        }
-      })
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.shouldDisplay = true;
+      }
+    })
   }
 
   showHideOPassword() {
@@ -91,32 +87,25 @@ export class MyInfoComponent implements OnInit {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  updateEmpInfo(){
+  updateEmpInfo() {
     //updates info in db
     //response returns updated info, which is set in session storage
     //current info is retrieved from session storage and set to currentUserInfo to show updated info to user
     //current info is also set to updateEmployee, which is two-way bound to form in template
-    this.employeeService.updateEmployee(this.updateEmployee).subscribe((response)=>{
+    this.employeeService.updateEmployee(this.updateEmployee).subscribe((response) => {
       this.authService.storeUserInfo(response);
       this.currentUserInfo = this.authService.retreiveUserInfo();
-      this.updateEmployee =  this.authService.retreiveUserInfo();
+      this.updateEmployee = this.authService.retreiveUserInfo();
     })
   }
 
-  updatePassword(){
+  updatePassword() {
     //updates info in db
     //response returns updated info, which is set in session storage
     //current info is retrieved from session storage and set to currentUserInfo to show updated info to user
     //current info is also set to updateEmployee, which is two-way bound to form in template
-    this.employeeService.updateEmployee(this.updatePwd).subscribe((response)=>{
+    this.employeeService.updateEmployee(this.updatePwd).subscribe((response) => {
       this.router.navigate(['logout']);
-      //this.oldPassword = '';
-      //this.confirmNewPassword = '';
-      //this.updatePwd.userPassword = '';
-      //this.authService.storeUserInfo(response);
-      //this.currentUserInfo = this.authService.retreiveUserInfo();
-      //this.updateEmployee =  this.authService.retreiveUserInfo();
-      //this.shouldDisplay = false;
     })
   }
 
