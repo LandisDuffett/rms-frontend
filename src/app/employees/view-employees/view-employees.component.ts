@@ -76,7 +76,6 @@ export class ViewEmployeesComponent implements OnInit {
           this.reassign()
         },
         error: (error) => {
-          console.log(error.error.error);
           this.userMessage = error.error.error;
         }
       });
@@ -112,7 +111,6 @@ export class ViewEmployeesComponent implements OnInit {
     this.employeeService.getEmpReqs(userId).subscribe(
       {
         next: (response) => {
-          console.log(response)
           this.userRequestMessage = '';
           this.currentEmpRequests = response;
           this.displayAction = false;
@@ -121,7 +119,6 @@ export class ViewEmployeesComponent implements OnInit {
           this.setAction();
         },
         error: (error) => {
-          console.log(error.error.error);
           this.displayAll = false;
           this.oneEmpError = true;
           this.userRequestMessage = error.error.error;

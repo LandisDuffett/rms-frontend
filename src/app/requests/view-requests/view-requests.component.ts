@@ -82,7 +82,6 @@ export class ViewRequestsComponent implements OnInit {
           this.setButtons();
         },
         error: (error) => {
-          console.log(error.error.error);
           this.requestMessage = error.error.error;
         }
       });
@@ -120,7 +119,6 @@ export class ViewRequestsComponent implements OnInit {
     this.updateRequest.requestTime = request.requestTime;
     this.updateRequest.resolvedTime = new Date().toUTCString();
     this.requestService.updateRequest(this.updateRequest).subscribe((response) => {
-      console.log(response);
       this.loadData();
     })
   }

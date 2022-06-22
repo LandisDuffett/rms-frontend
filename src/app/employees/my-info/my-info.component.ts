@@ -51,8 +51,9 @@ export class MyInfoComponent implements OnInit {
   loadData() {
   }
 
+  
   logTheChanges(title: any) {
-    console.log(title);
+    //console.log(title);
   }
 
   displayResetForm() {

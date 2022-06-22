@@ -59,7 +59,6 @@ export class MyRequestsComponent implements OnInit {
     this.requestService.getEmpReqs(usrid).subscribe(
       {
         next: (response) => {
-          console.log(response)
           this.myRequestMessage = '';
           this.currentMyRequests = response;
           for(let item of response) {
@@ -71,7 +70,6 @@ export class MyRequestsComponent implements OnInit {
           this.setButtons();
         },
         error: (error) => {
-          console.log(error.error.error);
           this.myRequestMessage = error.error.error;
         }
       });
@@ -119,7 +117,6 @@ export class MyRequestsComponent implements OnInit {
   }
 
   addANewRequest(){
-    console.log(this.newRequest)
     this.requestService.addRequest(this.newRequest).subscribe((response)=>{
       
        // we need a fresh fetch of all requests from the database

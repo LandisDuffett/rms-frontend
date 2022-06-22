@@ -48,10 +48,8 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['my-requests']);
           }
           }
-          console.log(response);
         },
         error: (error) => {
-          console.log(error.error.error);
           Swal.fire(error.error.error)
         }
       });

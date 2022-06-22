@@ -23,7 +23,7 @@ export class LogoutComponent implements OnInit {
     // also change the role in auth service to ""
     this.authService.role = "";
 
-    console.log(this.authService.isLoggedIn)
+    //console.log(this.authService.isLoggedIn)
 
     // navigate to the login component
     this.router.navigate(['login']);
